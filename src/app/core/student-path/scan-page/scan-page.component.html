@@ -1,27 +1,12 @@
-<app-header></app-header>
-<div class="w-full mx-auto my-3">
-  <form class="flex justify-center items-center bg-transparent" [formGroup]="updateForm" (ngSubmit)="submit()">
-    <div class="w-[75%] lg:w-[50%] p-2 shadow-lg bg-white rounded-md">
-      <h1 class="text-3xl block text-center font-semibold"><i class="fa-solid fa-file-lines"></i> Enter Student ID</h1>
-      <hr class="mt-3">
-      <div class="mt-3">
-        <label for="student_id" class="block text-base mb-2">Student ID</label>
-        <input type="text" id="student_id" class="border w-[86%] text-base px-2 py-1" formControlName="student_id" required/>
-      </div>
-      <div class="mt-3">
-        <label for="course_id" class="block text-base mb-2">Course ID</label>
-        <input type="text" id="course_id" class="border w-[86%] text-base px-2 py-1" [value]="course_id" disabled/>
-      </div>
-      <div class="mt-3">
-        <label for="date" class="block text-base mb-2">Date</label>
-        <input type="text" id="date" class="border w-[86%] text-base px-2 py-1" [value]="date" disabled/>
-      </div>
-      <div class="mt-5 flex justify-between gap-4">
-        <button type="submit" class="border-2 border-blue-300 bg-blue-300 text-white py-1 w-full rounded-md hover:bg-blue-500 font-semibold">
-          <i class="fa-solid fa-file-lines"></i>Submit
-        </button>
-      </div>
-    </div>
-  </form>
+<div>
+  <zxing-scanner
+    [formats]="formats"
+    (scanSuccess)="handleQrCodeResult($event)"
+    [device]="currentDevice"
+    [autostart]="true"
+    (camerasFound)="onCamerasFound($event)"
+  ></zxing-scanner>
+  <p *ngIf="qrResultString">Scanned QR Code: {{ qrResultString }}</p>
+  <p *ngIf="!hasPermission">Camera access is not granted. Please allow camera access to scan QR codes.</p>
 </div>
-<app-footer></app-footer>
+
