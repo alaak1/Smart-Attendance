@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { QrCodeService } from '../../../qr-code.service';
-import { FeedbackPopupComponent } from '../../../Helpers/feedback-popup/feedback-popup.component';
+import { ZXingScannerComponent } from '@zxing/ngx-scanner';
+import { BarcodeFormat } from '@zxing/library';
 
 @Component({
   selector: 'app-scan-page',
@@ -11,41 +8,39 @@ import { FeedbackPopupComponent } from '../../../Helpers/feedback-popup/feedback
   styleUrls: ['./scan-page.component.css']
 })
 export class ScanPageComponent implements OnInit {
-  passcode = '';
-  course_id = '';
-  date = '';
+  qrResultString: string = '';
+  currentDevice: MediaDeviceInfo | undefined;
+  hasDevices: boolean = false;
+  hasPermission: boolean = false;
 
-  updateForm = new FormGroup({
-    student_id: new FormControl('', [Validators.required]),
-  });
+  formats: BarcodeFormat[] = [BarcodeFormat.QR_CODE];
 
-  constructor(
-    private route: ActivatedRoute,
-    private qrCodeService: QrCodeService,
-    private dialog: MatDialog
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.passcode = this.route.snapshot.queryParamMap.get('passcode') || '';
-    this.course_id = this.route.snapshot.queryParamMap.get('course_id') || '';
-    this.date = this.route.snapshot.queryParamMap.get('date') || '';
+    // Optionally set the device here, or handle device selection logic
   }
 
-  submit() {
-    if (this.updateForm.valid) {
-      const formData = this.updateForm.value;
-      if (formData && formData.student_id) {
-        this.qrCodeService.updateAttendance(formData.student_id, this.course_id, this.date, this.passcode).subscribe(
-          response => {
-            this.dialog.open(FeedbackPopupComponent, {
-              data: { message: 'Excuse has been sent successfully!' }
-            });
-          },
-          error => {
-            console.error('Submission failed', error);
-          }
-        );
-      }
+  onCamerasFound(devices: MediaDeviceInfo[]): void {
+    this.hasDevices = devices && devices.length > 0;
+    // Select the preferred device, for example the first one
+    if (this.hasDevices) {
+      this.currentDevice = devices[0];
+    }
+  }
+
+  onHasPermission(has: boolean): void {
+    this.hasPermission = has;
+  }
+
+  handleQrCodeResult(result: string): void {
+    this.qrResultString = result;
+    try {
+      const qrData = JSON.parse(result);
+      console.log('Scanned QR Code Data:', qrData);
+      // Handle the scanned data as needed
+    } catch (error) {
+      console.error('Error parsing QR code result:', error);
     }
   }
 }

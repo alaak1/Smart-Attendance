@@ -37,8 +37,6 @@ export class QrGenerationPageComponent implements OnInit {
   }
 
   async generateQr() {
-    console.log('Course ID:', this.course_id); // Debug statement
-    console.log('Validity Period:', this.validity_period); // Debug statement
 
     if (this.course_id && this.validity_period > 0) {
       this.qrCodeService.generatePasscode(this.course_id, this.validity_period, this.date).subscribe(async response => {
@@ -48,14 +46,12 @@ export class QrGenerationPageComponent implements OnInit {
           date: this.date
         };
 
-        // Generate the link pointing to the new component with query parameters
-        const link = `https://plz-work-drab.vercel.app//scanQR?passcode=${encodeURIComponent(qrData.passcode)}&course_id=${encodeURIComponent(qrData.course_id)}&date=${encodeURIComponent(qrData.date)}`;
-
-        this.qrCodeUrl = link;
+        // Convert the qrData object to a JSON string
+        const qrDataJson = JSON.stringify(qrData);
 
         // Generate QR code on canvas
         const canvas = this.qrCanvas.nativeElement;
-        await QRCode.toCanvas(canvas, this.qrCodeUrl, { width: 500 });
+        await QRCode.toCanvas(canvas, qrDataJson, { width: 500 });
 
         // Overlay logo
         const ctx = canvas.getContext('2d');
@@ -76,4 +72,5 @@ export class QrGenerationPageComponent implements OnInit {
       console.error('Course ID or validity period is invalid.');
     }
   }
+
 }
