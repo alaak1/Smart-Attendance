@@ -7,7 +7,7 @@ import {Course} from "../../course";
   providedIn: 'root'
 })
 export class LecturerService {
-  private apiUrl = 'http://192.168.1.40:3000/api'; // Replace with your ngrok URL
+  private apiUrl = 'https://backend-files-for-attendance.vercel.app/api'; // Replace with your ngrok URL
 
   constructor(private http: HttpClient) { }
 

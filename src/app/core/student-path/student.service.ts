@@ -8,7 +8,7 @@ import {Course} from "../../course";
   providedIn: 'root'
 })
 export class studentService {
-  private apiUrl = 'http://192.168.1.40:3000/api/student-courses'; // Adjust the URL as needed
+  private apiUrl = 'https://backend-files-for-attendance.vercel.app/api/student-courses'; // Adjust the URL as needed
 
   constructor(private http: HttpClient) {}
 

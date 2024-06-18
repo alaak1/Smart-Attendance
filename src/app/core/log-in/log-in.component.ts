@@ -31,7 +31,7 @@ export class LogInComponent implements OnInit {
     this.credentials.id = this.logInForm.get('id')?.value || '';
     this.credentials.password = this.logInForm.get('password')?.value || '';
 
-    this.http.post<{ role : string , name : string , email : string }>('http://192.168.1.40:3000/api/login', this.credentials).subscribe(
+    this.http.post<{ role : string , name : string , email : string }>('https://backend-files-for-attendance.vercel.app/api/login', this.credentials).subscribe(
       response => {
         if (response.role) {
           this.credentials.role = response.role;

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class QrCodeService {
-  private apiUrl = `http://192.168.1.40:3000/api/qr`;
+  private apiUrl = `https://backend-files-for-attendance.vercel.app/api/qr`;
 
   constructor(private http: HttpClient) {}
 
