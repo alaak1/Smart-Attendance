@@ -1,0 +1,75 @@
+.example-container {
+  height: 600px;
+  width: 1500px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.table-container {
+  background-color:  rgba(23, 37, 84, 20%); /* Set the desired background color */
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* Make the table borderless */
+}
+
+th, td {
+  padding: 13px; /* Adjust padding for more spacing */
+  border: none;
+}
+
+.mat-elevation-z8 {
+  box-shadow: none; /* Remove shadow */
+}
+
+tr:nth-child(odd) td {
+  background-color: #bfdbfe; /* bg-blue-200 */
+}
+
+tr:nth-child(even) td {
+  background-color: #93c5fd; /* bg-blue-300 */
+}
+
+tr:hover td {
+  background-color: #73b0f7; /* bg-blue-500 */
+}
+
+.green {
+  color: #22c55e !important; /* Light green */
+}
+
+.orange {
+  color: #fb9136 !important; /* Light orange */
+}
+
+.red {
+  color: #ed1212 !important; /* Light red */
+}
+
+/* Custom scrollbar for the table container */
+.example-container::-webkit-scrollbar {
+  height: 20px; /* Height of the horizontal scrollbar */
+}
+
+.example-container::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the scrollbar track */
+}
+
+.example-container::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Round the corners of the scrollbar thumb */
+}
+
+.example-container::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the scrollbar thumb when hovered */
+}
+
+/* For Firefox */
+.example-container {
+  scrollbar-color: #888 #f1f1f1; /* Thumb color and track color */
+  scrollbar-width: thin;
+}

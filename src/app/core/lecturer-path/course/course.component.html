@@ -1,0 +1,52 @@
+<app-header></app-header>
+<app-banner></app-banner>
+<div class="flex flex-col py-2 w-[80%] mx-auto">
+  <div class="flex justify-center text-center py-2">
+    <section class="example-container mat-elevation-z8" tabindex="0">
+      <div class="table-container">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <!-- Student ID Column -->
+          <ng-container matColumnDef="student_id" sticky>
+            <th mat-header-cell *matHeaderCellDef class="p-4"> Student ID </th>
+            <td mat-cell *matCellDef="let element" class="p-4"> {{element.student_id}} </td>
+          </ng-container>
+
+          <!-- Student Name Column -->
+          <ng-container matColumnDef="name" sticky>
+            <th mat-header-cell *matHeaderCellDef class="p-4"> Student Name </th>
+            <td mat-cell *matCellDef="let element" class="p-4"> {{element.name}} </td>
+          </ng-container>
+
+          <!-- Attendance Status Columns for each date -->
+          <ng-container *ngFor="let column of displayedColumns.slice(3)" [matColumnDef]="column">
+            <th mat-header-cell *matHeaderCellDef class="p-4"> {{ column }} Status </th>
+            <td mat-cell *matCellDef="let element" class="p-4"> {{element[column] || 'N/A'}} </td>
+          </ng-container>
+
+          <!-- Absent Days Column -->
+          <ng-container matColumnDef="absent_days" sticky>
+            <th mat-header-cell *matHeaderCellDef class="p-4"> Absent Days </th>
+            <td mat-cell *matCellDef="let element" class="p-4 text-lg" [ngClass]="getAbsentDaysClass(element.absent_count)" (dblclick)="navigateToWarningForm(element.student_id, element.absent_count)">
+              {{element.absent_count}}
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="hover:bg-blue-500" [ngClass]="getRowClass(row)"></tr>
+        </table>
+      </div>
+    </section>
+  </div>
+  <div class="flex justify-between p-1 w-4/5 mx-auto">
+    <button type="button" (click)="generateQrCodePage()" class="border-2 border-blue-300 bg-blue-300 text-white py-1 w-full rounded-md hover:bg-blue-500 font-semibold">
+      <i class="fa-solid fa-qrcode"></i> Generate QR code
+    </button>
+    <button type="button" (click)="updateStatus()" class="mx-2 border-2 border-blue-300 bg-blue-300 text-white py-1 w-full rounded-md hover:bg-blue-500 font-semibold">
+      <i class="fa-solid fa-qrcode"></i> Update Status
+    </button>
+    <button type="button" (click)="sendWarning()" class="border-2 ml-1 border-blue-300 bg-blue-300 text-white py-1 w-full rounded-md hover:bg-blue-500 font-semibold">
+      <i class="fa-solid fa-file-lines"></i> Send Warning
+    </button>
+  </div>
+</div>
+<app-footer></app-footer>
