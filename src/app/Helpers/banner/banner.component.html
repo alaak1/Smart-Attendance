@@ -1,0 +1,18 @@
+<nav class="flex flex-col md:flex-row justify-evenly shadow-lg rounded-b-2xl bg-blue-100 items-center w-[80%] h-28 text-sm lg:text-lg md:w-[100%] md:h-16 mx-auto mb-1 p-3">
+  <div
+    class="duration-500 static min-h-fit left-0 top-[-100%] w-full flex items-center place-content-center md:place-content-start px-48">
+    <ul class="items-center flex gap-4">
+      <li>
+        <a class="hover:bg-blue-300 px-3 py-3 rounded-2xl"  routerLinkActive="bg-blue-400"
+           [routerLinkActiveOptions]="{ exact: true }" [routerLink]="userRole === 'lecturer' ? '/lecturer-dashboard' : '/student-dashboard'">Dashboard</a>
+      </li>
+      <li>
+        <a class="hover:bg-blue-300 px-3 py-3 rounded-2xl"  routerLinkActive="bg-blue-400"
+           [routerLinkActiveOptions]="{ exact: true }" [routerLink]="'/notification'">Notifications</a>
+      </li>
+    </ul>
+  </div>
+  <div class="flex items-center gap-6 px-48">
+    <button (click)="signout()" class="bg-blue-400 text-white px-5 py-1 rounded-lg hover:bg-blue-500 w-32 font-semibold">Sign Out</button>
+  </div>
+</nav>

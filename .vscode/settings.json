@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/91576e3b-99e8-4172-9af9-0a9dcf481df4/resourceGroups/alaa1/providers/Microsoft.Web/sites/SmartAttendanceApp",
+    "appService.deploySubpath": "dist\\smart-attendance"
+}

@@ -1,0 +1,45 @@
+<app-header></app-header>
+<app-banner></app-banner>
+<div class="w-full mx-auto my-3">
+  <form class="flex justify-center items-center bg-transparent" [formGroup]="updateStatusForm" (ngSubmit)="updateStatus()">
+    <div class="w-[75%] lg:w-[50%] p-2 shadow-lg bg-white rounded-md">
+      <h1 class="text-3xl block text-center font-semibold"><i class="fa-solid fa-user-check"></i> Update Status</h1>
+      <hr class="mt-3">
+      <div class="mt-3">
+        <label for="student_id" class="block text-base mb-2">Student ID</label>
+        <input type="text" id="student_id" formControlName="student_id" class="border w-[86%] text-base px-2 py-1" placeholder="Enter Student ID"/>
+      </div>
+      <div class="mt-3">
+        <label for="course_id" class="block text-base mb-2">Course ID</label>
+        <input type="text" id="course_id" class="border w-[86%] text-base px-2 py-1" [value]="course_id" disabled/>
+      </div>
+      <div class="mt-5 bg-transparent flex-col items-center justify-center">
+        <div class="flex w-full p-1">
+          <mat-form-field class="w-80">
+            <input matInput formControlName="date" [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <button class="mb-5" mat-button (click)="picker.open()"><i class="fa-solid fa-calendar-days"></i></button>
+        </div>
+      </div>
+        <div class="mt-3">
+          <label class="block text-base mb-2">New Status</label>
+          <mat-radio-group formControlName="status">
+            <mat-radio-button value="attended">Attended</mat-radio-button>
+            <mat-radio-button value="excused">Excused</mat-radio-button>
+            <mat-radio-button value="absent">Absent</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      <div class="mt-5 flex justify-between">
+        <button type="button" class="border-2 border-gray-300 text-white py-1 w-1/2 rounded-md bg-gray-500 hover:bg-gray-600 font-semibold mr-2" (click)="cancel()">
+          <i class="fa-solid fa-times"></i>Cancel
+        </button>
+        <button type="submit" class="border-2 border-blue-300 bg-blue-300 text-white py-1 w-1/2 rounded-md hover:bg-blue-500 font-semibold">
+          <i class="fa-solid fa-file-lines"></i>Update
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<app-footer></app-footer>
