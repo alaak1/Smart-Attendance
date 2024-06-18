@@ -49,7 +49,7 @@ export class QrGenerationPageComponent implements OnInit {
         };
 
         // Generate the link pointing to the new component with query parameters
-        const link = `https://plz-work-drab.vercel.app/scanQR?passcode=${encodeURIComponent(qrData.passcode)}&course_id=${encodeURIComponent(qrData.course_id)}&date=${encodeURIComponent(qrData.date)}`;
+        const link = `https://plz-work-drab.vercel.app/student-dashboard/scanQR?passcode=${encodeURIComponent(qrData.passcode)}&course_id=${encodeURIComponent(qrData.course_id)}&date=${encodeURIComponent(qrData.date)}`;
 
         this.qrCodeUrl = link;
 
