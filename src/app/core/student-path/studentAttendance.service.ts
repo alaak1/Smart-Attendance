@@ -12,7 +12,7 @@ export interface Attendance {
   providedIn: 'root'
 })
 export class AttendanceService {
-  private apiUrl = 'http://192.168.1.40:3000/api/course-attendance'; // Adjust the URL as needed
+  private apiUrl = 'https://backend-files-for-attendance.vercel.app/api/course-attendance'; // Adjust the URL as needed
 
   constructor(private http: HttpClient) {}
 

@@ -19,7 +19,7 @@ interface StudentAttendance {
   providedIn: 'root'
 })
 export class AttendanceService {
-  private apiUrl = 'http://192.168.1.40:3000/api/lecturer-course-attendance'; 
+  private apiUrl = 'https://backend-files-for-attendance.vercel.app/api/lecturer-course-attendance'; 
 
   constructor(private http: HttpClient) {}
 
@@ -30,6 +30,6 @@ export class AttendanceService {
 
   updateAttendance(student_id: string, course_id: string, date: string, status: string): Observable<any> {
     const updateData = { student_id, course_id, date, status };
-    return this.http.put('http://192.168.1.40:3000/api/attendances', updateData);
+    return this.http.put('https://backend-files-for-attendance.vercel.app/api/attendances', updateData);
   }
 }
