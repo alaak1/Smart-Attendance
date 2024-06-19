@@ -1,8 +1,3 @@
-scannerBox {
-  width: 250px;
-  height: 250px;
-}
-
 .scanner-overlay {
   position: absolute;
   top: 0;
