@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; /* Minimum height to center content vertically */
+  min-height: 60vh; /* Reduced height to avoid taking up the entire screen */
   padding: 20px; /* Add some padding for better spacing on mobile */
   box-sizing: border-box; /* Ensure padding is included in the total width and height */
 }
@@ -34,5 +34,6 @@
 .scanner-overlay img {
   width: 100%; /* Make the image cover the entire scanner area */
   height: 100%;
-  object-fit: cover; /* Ensure the image covers the entire area without distortion */
+  object-fit: contain; /* Ensure the image covers the entire area without distortion */
+  background: transparent; /* Make the background transparent */
 }
