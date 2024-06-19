@@ -3,7 +3,8 @@
 <div class="scanner-container">
   <div class="scannerBox relative">
     <div class="scanner-overlay">
-      <img src="assets/imgs/scanner.png" alt="Scanner Overlay">
+      <!-- Overlay PNG image with transparent background -->
+      <img src="assets/imgs/overlay.png" alt="Scanner Overlay">
     </div>
     <zxing-scanner
       [formats]="formats"
@@ -11,9 +12,9 @@
       [device]="currentDevice"
       [autostart]="true"
       (camerasFound)="onCamerasFound($event)"
+      style="width: 100%; height: 100%;" <!-- Ensure the camera view takes up the entire scannerBox -->
     ></zxing-scanner>
     <p *ngIf="!hasPermission">Camera access is not granted. Please allow camera access to scan QR codes.</p>
   </div>
 </div>
 <app-footer></app-footer>
-
