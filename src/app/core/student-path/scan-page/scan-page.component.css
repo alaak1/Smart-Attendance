@@ -1,1 +1,53 @@
+body {
+  margin: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
 
+.scanner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh; /* Reduced height to avoid taking up the entire screen */
+  padding: 10px; /* Add some padding for better spacing on mobile */
+  box-sizing: border-box; /* Ensure padding is included in the total width and height */
+  overflow: hidden; /* Prevent horizontal scrolling */
+}
+
+.scannerBox {
+  border-style: solid;
+  border-color: #172554;
+  border-width: 5px;
+  margin-top: -95px;
+  width: 100%; /* Use viewport width for responsiveness */
+  max-width: 100%; /* Fixed maximum width */
+  height: 100%; /* Fixed height */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scanner-overlay {
+  position: absolute;
+  width: 70%; /* Make the overlay 70% of the scanner size */
+  height: 70%; /* Make the overlay 70% of the scanner size */
+  top: 25%; /* Adjust this value to move the overlay closer to the top */
+  left: 50%;
+  transform: translate(-50%, -25%); /* Adjust the vertical translate value to move the overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none; /* allows clicks to pass through to the scanner */
+}
+
+.scanner-overlay img {
+  width: 100%; /* Make the image cover the entire overlay area */
+  height: 100%;
+  object-fit: contain; /* Ensure the image covers the entire area without distortion */
+}
+
+zxing-scanner {
+  width: 100%; /* Ensure the scanner takes up the full width of the container */
+  height: 100%; /* Ensure the scanner takes up the full height of the container */
+}

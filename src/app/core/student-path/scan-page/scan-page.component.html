@@ -1,13 +1,18 @@
 <app-header></app-header>
 <app-banner></app-banner>
-<div class="justify-center place-content-center text-center">
-  <zxing-scanner
-    [formats]="formats"
-    (scanSuccess)="handleQrCodeResult($event)"
-    [device]="currentDevice"
-    [autostart]="true"
-    (camerasFound)="onCamerasFound($event)"
-  ></zxing-scanner>
-  <p *ngIf="!hasPermission">Camera access is not granted. Please allow camera access to scan QR codes.</p>
+<div class="scanner-container">
+  <div class="scannerBox">
+    <div class="scanner-overlay">
+      <img src="assets/imgs/overlay.png" alt="Scanner Overlay">
+    </div>
+    <zxing-scanner
+      [formats]="formats"
+      (scanSuccess)="handleQrCodeResult($event)"
+      [device]="currentDevice"
+      [autostart]="true"
+      (camerasFound)="onCamerasFound($event)"
+    ></zxing-scanner>
+    <p *ngIf="!hasPermission">Camera access is not granted. Please allow camera access to scan QR codes.</p>
+  </div>
 </div>
 <app-footer></app-footer>
