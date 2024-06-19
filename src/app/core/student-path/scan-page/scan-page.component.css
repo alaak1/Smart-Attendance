@@ -1,6 +1,17 @@
-scannerBox {
-  width: 250px;
-  height: 250px;
+.scanner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full viewport height */
+}
+
+.scannerBox {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .scanner-overlay {
@@ -12,15 +23,12 @@ scannerBox {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5); /* semi-transparent background */
-  color: white;
   z-index: 10;
   pointer-events: none; /* allows clicks to pass through to the scanner */
 }
 
-.scanner-overlay p {
-  margin: 0;
-  padding: 0;
-  font-size: 1.2em;
-  text-align: center;
+.scanner-overlay img {
+  width: 100%; /* Make the image cover the entire scanner area */
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the entire area without distortion */
 }
