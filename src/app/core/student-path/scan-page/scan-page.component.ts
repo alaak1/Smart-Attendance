@@ -6,6 +6,7 @@ import {UserService} from "../../../user.service";
 import {IUserCredentials} from "../../../User.module";
 import {FeedbackPopupComponent} from "../../../Helpers/feedback-popup/feedback-popup.component";
 import {MatDialog} from "@angular/material/dialog";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-scan-page',
@@ -21,7 +22,9 @@ export class ScanPageComponent implements OnInit {
 
   formats: BarcodeFormat[] = [BarcodeFormat.QR_CODE];
 
-  constructor(private qrCodeService: QrCodeService,
+  constructor(
+              private router: Router,
+              private qrCodeService: QrCodeService,
               private userService: UserService,
               private dialog: MatDialog
   ) {}
@@ -79,12 +82,17 @@ export class ScanPageComponent implements OnInit {
     this.qrCodeService.updateAttendance(student_id, qrData.course_id, qrData.date, qrData.passcode).subscribe(
       response => {
         console.log('Attendance updated successfully:', response);
+        this.router.navigate([`student-dashboard`]);
         this.dialog.open(FeedbackPopupComponent, {
           data: { message: 'Excuse has been sent successfully!' }
         });
       },
       error => {
         console.error('Error updating attendance:', error);
+        this.router.navigate([`student-dashboard`]);
+        this.dialog.open(FeedbackPopupComponent, {
+          data: { message: 'Error Could not update your attendance:' , error: error.message }
+        });
       }
     );
     }
