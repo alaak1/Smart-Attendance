@@ -2,16 +2,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Full viewport height */
+  min-height: 100vh; /* Minimum height to center content vertically */
+  padding: 20px; /* Add some padding for better spacing on mobile */
+  box-sizing: border-box; /* Ensure padding is included in the total width and height */
 }
 
 .scannerBox {
-  width: 300px;
-  height: 300px;
+  width: 90vw; /* Use viewport width to make it responsive */
+  max-width: 300px; /* Maximum width for larger screens */
+  height: auto;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  aspect-ratio: 1 / 1; /* Maintain a square aspect ratio */
 }
 
 .scanner-overlay {
