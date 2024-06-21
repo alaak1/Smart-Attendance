@@ -26,7 +26,6 @@ export class LecturerPathComponent implements OnInit{
     this.lecturerService.getCourses(lecturerId).subscribe(
       courses => {
         this.lecturerCourses = courses;
-        console.log(this.lecturerCourses);
       },
       error => {
         console.error('Error fetching courses:', error);

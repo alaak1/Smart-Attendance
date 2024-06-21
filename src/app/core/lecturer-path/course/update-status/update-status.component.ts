@@ -41,8 +41,6 @@ export class UpdateStatusComponent implements OnInit {
     if (this.course_id && student_id && date && status) {
       const formattedDate = this.formatDateString(date);
       this.attendanceService.updateAttendance(student_id, this.course_id, formattedDate, status).subscribe(response => {
-        console.log('Status updated:', response);
-
         this.router.navigate([`/lecturer-dashboard/course/${this.course_id}`]);
         this.dialog.open(FeedbackPopupComponent, {
           data: { message: 'Status has been updated successfully!' }

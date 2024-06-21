@@ -51,7 +51,6 @@ export class ExcusePageComponent implements OnInit {
     const target = event.target as HTMLInputElement;
     if (target && target.files) {
       this.selectedFile = target.files[0] ?? null;
-      console.log(this.selectedFile.name);
     } else {
       this.selectedFile = null;
     }
@@ -87,7 +86,6 @@ export class ExcusePageComponent implements OnInit {
       if (this.selectedFile) {
         this.notificationService.createNotification(notification, this.selectedFile).subscribe(
           response => {
-            console.log('Notification created:', response);
             this.router.navigate(['student-dashboard']);
             this.dialog.open(FeedbackPopupComponent, {
               data: { message: 'Excuse has been sent successfully!' }
@@ -102,7 +100,6 @@ export class ExcusePageComponent implements OnInit {
       } else {
         this.notificationService.createNotification(notification).subscribe(
           response => {
-            console.log('Notification created:', response);
             this.router.navigate(['student-dashboard']);
           },
           error => {
