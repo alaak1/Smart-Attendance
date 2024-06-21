@@ -1,4 +1,5 @@
 export interface Notification {
+  _id: string;
   notification_id: string;
   recipient_id: string;
   sender_id: string;

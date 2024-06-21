@@ -44,13 +44,12 @@ export class NotificationsComponent implements OnInit {
     }
   }
 
-  downloadFile(filename: string): void {
-    this.notificationService.downloadFile(filename).subscribe(
-      response => {
-        const url = window.URL.createObjectURL(response);
+  downloadFile(notification : Notification): void {
+    this.notificationService.downloadFile(notification.notification_id).subscribe(
+      fileUrl => {
         const link = document.createElement('a');
-        link.href = url;
-        link.download = filename;
+        link.href = fileUrl;
+        link.download = fileUrl;
         link.click();
       },
       error => {
@@ -83,4 +82,5 @@ export class NotificationsComponent implements OnInit {
       );
     }, 500);
   }
+
 }

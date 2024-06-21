@@ -3,11 +3,11 @@
     class="duration-500 static min-h-fit left-0 top-[-100%] w-full flex items-center place-content-center md:place-content-start px-48">
     <ul class="items-center flex gap-4">
       <li>
-        <a class="hover:bg-blue-300 px-3 py-3 rounded-2xl relative" routerLinkActive="bg-blue-400"
+        <a class="hover:bg-blue-300 px-3 py-3 rounded-2xl relative w-[90%]" routerLinkActive="bg-blue-400"
            [routerLinkActiveOptions]="{ exact: true }" [routerLink]="userRole === 'lecturer' ? '/lecturer-dashboard' : '/student-dashboard'">Dashboard</a>
       </li>
       <li>
-        <a class="hover:bg-blue-300 px-3 py-3 rounded-2xl relative" routerLinkActive="bg-blue-400"
+        <a class="hover:bg-blue-300 px-3 py-3 rounded-2xl relative w-[90%]" routerLinkActive="bg-blue-400"
            [routerLinkActiveOptions]="{ exact: true }" [routerLink]="'/notification'">Notifications
           <span *ngIf="notifications.length > 0" class="notification-badge"></span>
         </a>

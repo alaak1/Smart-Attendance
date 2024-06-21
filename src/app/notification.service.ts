@@ -32,8 +32,8 @@ export class NotificationService {
     return this.http.post<Notification>(this.apiUrl, formData);
   }
 
-  downloadFile(notificationId: string): Observable<Blob> {
-    return this.http.get(`${this.fileDownloadUrl}/${notificationId}`, { responseType: 'blob' });
+  downloadFile(notificationId: string): Observable<string> {
+    return this.http.get(`${this.fileDownloadUrl}/${notificationId}`, { responseType: 'text' });
   }
 
   deleteNotification(notification_id: string): Observable<any> {
