@@ -16,4 +16,8 @@
     <p *ngIf="!hasPermission">Camera access is not granted. Please allow camera access to scan QR codes.</p>
   </div>
 </div>
-<app-footer></app-footer>
+<div class="flex justify-center">
+<button type="button" class="border-2 border-gray-500 bg-gray-500 hover:bg-gray-600 text-white py-1 w-[95%] mx-auto rounded-md font-semibold" (click)="cancel()">
+  <i class="fa-solid fa-times"></i>Cancel
+</button>
+</div>

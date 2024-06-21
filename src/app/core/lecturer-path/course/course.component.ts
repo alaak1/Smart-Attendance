@@ -1,9 +1,11 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IUserCredentials } from '../../../User.module';
 import { UserService } from '../../../user.service';
 import { AttendanceService } from '../../../attendaceRecord.service';
-import { NotificationService } from '../../../notification.service'; // Import NotificationService
+import { NotificationService } from '../../../notification.service';
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {Course} from "../../../course"; // Import NotificationService
 
 interface AttendanceRecord {
   date: string;
@@ -25,10 +27,14 @@ interface StudentAttendance {
 })
 
 export class CourseComponent implements OnInit {
+  @Output() messageEvent = new EventEmitter();
   displayedColumns: string[] = ['student_id', 'name', 'absent_days'];
   dataSource: StudentAttendance[] = [];
   user: IUserCredentials | null = null;
   course_id: string = '';
+  courseName ='';
+  courseCode ='';
+
   constructor(
     private userService: UserService,
     private attendanceService: AttendanceService,
@@ -40,10 +46,15 @@ export class CourseComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.getUser();
-    const idParam = this.route.snapshot.paramMap.get('id');
 
-    if (idParam !== null) {
+    const idParam = this.route.snapshot.paramMap.get('id');
+    const course_name = this.route.snapshot.paramMap.get('name');
+    const course_code = this.route.snapshot.paramMap.get('code');
+
+    if (idParam !== null && course_name !==null && course_code !== null) {
       this.course_id = idParam;
+      this.courseName = course_name;
+      this.courseCode = course_code;
     } else {
       console.error('Invalid route parameters');
     }
@@ -137,19 +148,19 @@ export class CourseComponent implements OnInit {
   }
 
   sendWarning() {
-    this.router.navigate([`lecturer-dashboard/course/${this.course_id}/warning`]);
+    this.router.navigate([`lecturer-dashboard/course/${this.course_id}/${this.courseName}/${this.courseCode}/warning`]);
   }
 
   generateQrCodePage() {
-    this.router.navigate([`lecturer-dashboard/course/${this.course_id}/qr-generation`]);
+    this.router.navigate([`lecturer-dashboard/course/${this.course_id}/${this.courseName}/${this.courseCode}/qr-generation`]);
   }
 
   updateStatus() {
-    this.router.navigate([`lecturer-dashboard/course/${this.course_id}/update-status`]);
+    this.router.navigate([`lecturer-dashboard/course/${this.course_id}/${this.courseName}/${this.courseCode}/update-status`]);
   }
 
   navigateToWarningForm(student_id: string, absent_days: string): void {
-    this.router.navigate([`/lecturer-dashboard/course/${this.course_id}/warning`], {
+    this.router.navigate([`lecturer-dashboard/course/${this.course_id}/${this.courseName}/${this.courseCode}/warning`], {
       queryParams: { student_id, absent_days }
     });
   }

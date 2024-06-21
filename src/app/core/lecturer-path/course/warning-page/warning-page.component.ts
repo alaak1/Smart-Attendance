@@ -15,6 +15,8 @@ import {FeedbackPopupComponent} from "../../../../Helpers/feedback-popup/feedbac
 export class WarningPageComponent implements OnInit {
   course_id: string = '';
   user: IUserCredentials | null = null;
+  courseName ='';
+  courseCode ='';
 
   warningForm = new FormGroup({
     id: new FormControl('', Validators.required),
@@ -31,8 +33,18 @@ export class WarningPageComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.userService.getUser();
-    this.course_id = this.route.snapshot.paramMap.get('id') || '';
 
+    const idParam = this.route.snapshot.paramMap.get('id');
+    const course_name = this.route.snapshot.paramMap.get('name');
+    const course_code = this.route.snapshot.paramMap.get('code');
+
+    if (idParam !== null && course_name !==null && course_code !== null) {
+      this.course_id = idParam;
+      this.courseName = course_name;
+      this.courseCode = course_code;
+    } else {
+      console.error('Invalid route parameters');
+    }
     // Retrieve the query parameters
     this.route.queryParams.subscribe(params => {
       if (params['student_id'] && params['absent_days']) {
@@ -60,10 +72,11 @@ export class WarningPageComponent implements OnInit {
 
       this.notificationService.createNotification(notification).subscribe(
         response => {
-          this.router.navigate([`lecturer-dashboard/course/${this.course_id}`]);
           this.dialog.open(FeedbackPopupComponent, {
             data: { message: 'Warning has been sent successfully!' }
           });
+          this.router.navigate([`lecturer-dashboard/course/${this.course_id}/${this.courseName}/${this.courseCode}`]);
+
         },
         error => {
           console.error('Error creating notification:', error);
@@ -74,7 +87,7 @@ export class WarningPageComponent implements OnInit {
 
   cancel(): void {
     if (this.course_id) {
-      this.router.navigate([`/lecturer-dashboard/course/${this.course_id}`]);
+      this.router.navigate([`lecturer-dashboard/course/${this.course_id}/${this.courseName}/${this.courseCode}`]);
     } else {
       console.error('Course ID is missing');
     }

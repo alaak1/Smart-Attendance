@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Inter, sans-serif;  background: #D5DEE4}
-
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  background: #D5DEE4;
+}
 
 /*!* CSS HEX *!*/
 /*--penn-blue: #141447ff;*/

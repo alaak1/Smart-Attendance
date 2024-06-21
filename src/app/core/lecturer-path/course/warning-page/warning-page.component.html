@@ -8,11 +8,11 @@
         <hr class="mt-3">
         <div class="mt-3">
           <label for="id" class="block text-base mb-2">Student ID</label>
-          <input type="text" id="id" name="id" required [formControlName]="'id'" class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="Enter Your ID..." />
+          <input type="text" id="id" name="id" required [formControlName]="'id'" class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="Enter Student ID..." />
         </div>
         <div class="mt-3">
           <label for="comments" class="block text-base mb-2">Comments</label>
-          <textarea required name="comments" id="comments" [formControlName]="'comments'" class="border w-full text-base p-1 focus:outline-none focus:ring-0 focus:border-gray-600 h-20" placeholder="Enter Your Comments..."></textarea>
+          <textarea required name="comments" id="comments" [formControlName]="'comments'" class="border w-full text-base p-1 focus:outline-none focus:ring-0 focus:border-gray-600 h-20" placeholder="Comments for warning..."></textarea>
         </div>
         <div class="mt-5 flex justify-between gap-4">
           <button type="button" class="border-2 border-gray-500 bg-gray-500 hover:bg-gray-600 text-white py-1 w-full rounded-md font-semibold" (click)="cancel()">

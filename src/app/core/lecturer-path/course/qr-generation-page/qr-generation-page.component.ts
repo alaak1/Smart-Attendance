@@ -14,6 +14,8 @@ export class QrGenerationPageComponent implements OnInit {
   course_id: string = '';
   validity_period: number = 10; // Default validity period in minutes
   date: string = ''; // Formatted date
+  courseName ='';
+  courseCode ='';
 
   constructor(
     private router: Router,
@@ -22,10 +24,20 @@ export class QrGenerationPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.course_id = params.get('id') || '';
-    });
+    const idParam = this.route.snapshot.paramMap.get('id');
+    const course_name = this.route.snapshot.paramMap.get('name');
+    const course_code = this.route.snapshot.paramMap.get('code');
+
+    if (idParam !== null && course_name !==null && course_code !== null) {
+      this.course_id = idParam;
+      this.courseName = course_name;
+      this.courseCode = course_code;
+    } else {
+      console.error('Invalid route parameters');
+    }
     this.date = this.formatDate(new Date());
+
+
   }
 
   private formatDate(date: Date): string {
@@ -71,5 +83,11 @@ export class QrGenerationPageComponent implements OnInit {
       console.error('Course ID or validity period is invalid.');
     }
   }
-
+  cancel(): void {
+    if (this.course_id) {
+      this.router.navigate([`lecturer-dashboard/course/${this.course_id}/${this.courseName}/${this.courseCode}`]);
+    } else {
+      console.error('Course ID is missing');
+    }
+  }
 }

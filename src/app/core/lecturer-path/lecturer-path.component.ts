@@ -18,7 +18,6 @@ export class LecturerPathComponent implements OnInit{
     this.user = this.userService.getUser();
     if (this.user && this.user.id) {
       this.fetchCourses(this.user.id);
-
     }
   }
 
@@ -43,6 +42,6 @@ export class LecturerPathComponent implements OnInit{
   ) {
   }
   goToCourse(course: Course) {
-    this.router.navigate([`lecturer-dashboard/course/${course.course_id}`]);
+    this.router.navigate([`lecturer-dashboard/course/${course.course_id}/${course.name}/${course.code}`]);
   }
 }

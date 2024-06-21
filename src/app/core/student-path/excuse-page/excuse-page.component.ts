@@ -86,10 +86,10 @@ export class ExcusePageComponent implements OnInit {
       if (this.selectedFile) {
         this.notificationService.createNotification(notification, this.selectedFile).subscribe(
           response => {
-            this.router.navigate(['student-dashboard']);
             this.dialog.open(FeedbackPopupComponent, {
               data: { message: 'Excuse has been sent successfully!' }
             });
+            this.router.navigate(['student-dashboard']);
           },
           error => {
             console.error('Error creating notification:', error);

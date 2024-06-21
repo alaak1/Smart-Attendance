@@ -20,10 +20,10 @@ const routes: Routes = [
   { path: 'student-dashboard/scanQR', component: ScanPageComponent },
   { path: 'student-dashboard/excuse', component: ExcusePageComponent },
   { path: 'lecturer-dashboard', component: LecturerPathComponent },
-  { path: 'lecturer-dashboard/course/:id', component: CourseComponent },
-  { path: 'lecturer-dashboard/course/:id/warning', component: WarningPageComponent },
-  { path: 'lecturer-dashboard/course/:id/qr-generation', component: QrGenerationPageComponent },
-  { path: 'lecturer-dashboard/course/:id/update-status', component: UpdateStatusComponent },
+  { path: 'lecturer-dashboard/course/:id/:name/:code', component: CourseComponent },
+  { path: 'lecturer-dashboard/course/:id/:name/:code/warning', component: WarningPageComponent },
+  { path: 'lecturer-dashboard/course/:id/:name/:code/qr-generation', component: QrGenerationPageComponent },
+  { path: 'lecturer-dashboard/course/:id/:name/:code/update-status', component: UpdateStatusComponent },
   { path: '**', redirectTo: '/log-in' }
 ];
 

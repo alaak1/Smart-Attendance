@@ -89,18 +89,22 @@ export class ScanPageComponent implements OnInit {
     if (this.user && this.user.id === student_id) {
       this.qrCodeService.updateAttendance(student_id, qrData.course_id, qrData.date, qrData.passcode).subscribe(
         response => {
-          this.router.navigate(['student-dashboard']);
           this.dialog.open(FeedbackPopupComponent, {
             data: { message: 'Attendance updated successfully!' }
           });
+          this.router.navigate(['student-dashboard']);
         },
         error => {
-          this.router.navigate(['student-dashboard']);
           this.dialog.open(FeedbackPopupComponent, {
-            data: { message: 'Error: Could not update your attendance', error: error.message }
+            data: { message: 'Could not update your attendance',error: error.message}
           });
+          this.router.navigate(['student-dashboard']);
         }
       );
     }
+  }
+
+  cancel(): void {
+    this.router.navigate([`/student-dashboard/`]);
   }
 }
