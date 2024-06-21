@@ -6,6 +6,7 @@
       <img src="assets/imgs/overlay.png" alt="Scanner Overlay">
     </div>
     <zxing-scanner
+      #scanner
       [formats]="formats"
       (scanSuccess)="handleQrCodeResult($event)"
       [device]="currentDevice"
