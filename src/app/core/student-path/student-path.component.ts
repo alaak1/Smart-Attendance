@@ -5,6 +5,8 @@ import {UserService} from "../../user.service";
 import {IUserCredentials} from "../../User.module";
 import {studentService} from "./student.service";
 import {Attendance, AttendanceService} from "./studentAttendance.service";
+import {MatDialog} from "@angular/material/dialog";
+import {StudentRecordComponent} from "./student-record/student-record.component";
 
 @Component({
   selector: 'app-student-path',
@@ -54,10 +56,16 @@ export class StudentPathComponent implements OnInit{
     });
   }
 
-
+  openStudentRecord(course: Course): void {
+    this.dialog.open(StudentRecordComponent, {
+      width: '500px',
+      data: course
+    });
+  }
   constructor(private studentService : studentService,
               private attendanceService: AttendanceService,
               private router:Router,
+              private dialog: MatDialog,
               private userService: UserService) {}
 
   sendExcuse() {

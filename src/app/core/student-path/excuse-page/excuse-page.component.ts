@@ -51,6 +51,7 @@ export class ExcusePageComponent implements OnInit {
     const target = event.target as HTMLInputElement;
     if (target && target.files) {
       this.selectedFile = target.files[0] ?? null;
+      console.log(this.selectedFile.name);
     } else {
       this.selectedFile = null;
     }
