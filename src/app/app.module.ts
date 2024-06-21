@@ -11,7 +11,6 @@ import { HeaderComponent } from './Helpers/header/header.component';
 import { FooterComponent } from './Helpers/footer/footer.component';
 import {LecturerPathComponent} from "./core/lecturer-path/lecturer-path.component";
 
-
 import {WarningPageComponent} from "./core/lecturer-path/course/warning-page/warning-page.component";
 import {QrGenerationPageComponent} from "./core/lecturer-path/course/qr-generation-page/qr-generation-page.component";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -33,12 +32,12 @@ import { CourseComponent } from './core/lecturer-path/course/course.component';
 import { BannerComponent } from './Helpers/banner/banner.component';
 import { NotificationsComponent } from './core/notifications/notifications.component';
 import {QRCodeModule} from "angularx-qrcode";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UpdateStatusComponent } from './core/lecturer-path/course/update-status/update-status.component';
 import {MatRadioButton, MatRadioGroup} from "@angular/material/radio";
 import {ZXingScannerModule} from "@zxing/ngx-scanner";
 import {MatDialogModule} from "@angular/material/dialog";
 import { FeedbackPopupComponent } from './Helpers/feedback-popup/feedback-popup.component';
+import { StudentRecordComponent } from './core/student-path/student-record/student-record.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +56,7 @@ import { FeedbackPopupComponent } from './Helpers/feedback-popup/feedback-popup.
     NotificationsComponent,
     UpdateStatusComponent,
     FeedbackPopupComponent,
+    StudentRecordComponent,
 
   ],
     imports: [
