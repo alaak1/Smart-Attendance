@@ -26,7 +26,6 @@ export class StudentPathComponent implements OnInit{
         courses => {
           this.studentCourses = courses;
           this.fetchAllCourseAttendance();
-          console.log(this.courseAttendance);
         },
         error => {
           console.error('Error fetching courses:', error);

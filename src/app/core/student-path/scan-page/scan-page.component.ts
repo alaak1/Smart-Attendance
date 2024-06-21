@@ -66,7 +66,6 @@ export class ScanPageComponent implements OnInit {
     this.qrResultString = result;
     try {
       const qrData = JSON.parse(result);
-      console.log('Scanned QR Code Data:', qrData);
       // Handle the scanned data as needed
 
       // Update attendance
@@ -77,18 +76,16 @@ export class ScanPageComponent implements OnInit {
   }
 
   updateAttendance(qrData: { passcode: string; course_id: string; date: string }): void {
-    const student_id = this.user?.id; // Assuming the user object has an 'id' property
+    const student_id = this.user?.id;
     if(this.user && this.user.id === student_id) {
     this.qrCodeService.updateAttendance(student_id, qrData.course_id, qrData.date, qrData.passcode).subscribe(
       response => {
-        console.log('Attendance updated successfully:', response);
         this.router.navigate([`student-dashboard`]);
         this.dialog.open(FeedbackPopupComponent, {
-          data: { message: 'Excuse has been sent successfully!' }
+          data: { message: 'Attendance updated successfully!' }
         });
       },
       error => {
-        console.error('Error updating attendance:', error);
         this.router.navigate([`student-dashboard`]);
         this.dialog.open(FeedbackPopupComponent, {
           data: { message: 'Error Could not update your attendance:' , error: error.message }

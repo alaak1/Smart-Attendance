@@ -24,7 +24,6 @@ export class QrGenerationPageComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.course_id = params.get('id') || '';
-      console.log('Course ID:', this.course_id); // Debug statement
     });
     this.date = this.formatDate(new Date());
   }

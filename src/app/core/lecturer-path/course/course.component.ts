@@ -129,7 +129,6 @@ export class CourseComponent implements OnInit {
 
     this.notificationService.createNotification(notification).subscribe(
       response => {
-        console.log('Notification created:', response);
       },
       error => {
         console.error('Error creating notification:', error);

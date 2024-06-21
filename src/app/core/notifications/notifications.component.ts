@@ -62,7 +62,6 @@ export class NotificationsComponent implements OnInit {
   updateAttendance(notification: Notification, status: string): void {
     this.attendanceService.updateAttendance(notification.sender_id, notification.course_id, notification.date_sent, status).subscribe(
       response => {
-        console.log('Attendance updated successfully', response);
         this.deleteNotification(notification.notification_id);
       },
       error => {
@@ -76,7 +75,6 @@ export class NotificationsComponent implements OnInit {
     setTimeout(() => {
       this.notificationService.deleteNotification(notificationId).subscribe(
         response => {
-          console.log('Notification deleted successfully', response);
           this.notifications = this.notifications.filter(notification => notification.notification_id !== notificationId);
         },
         error => {

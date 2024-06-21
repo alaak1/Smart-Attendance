@@ -60,7 +60,6 @@ export class WarningPageComponent implements OnInit {
 
       this.notificationService.createNotification(notification).subscribe(
         response => {
-          console.log('Notification created:', response);
           this.router.navigate([`lecturer-dashboard/course/${this.course_id}`]);
           this.dialog.open(FeedbackPopupComponent, {
             data: { message: 'Warning has been sent successfully!' }
